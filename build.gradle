@@ -1,37 +1,24 @@
-buildscript {
-  ext.androidPluginVersion = '2.2.3'
-  ext.kotlinVersion = '1.0.6'
-  ext.supportLibraryVersion = '25.1.0'
-
-  repositories {
-    jcenter()
-  }
-
-  dependencies {
-    // See changelog: http://developer.android.com/tools/revisions/gradle-plugin.html.
-    classpath "com.android.tools.build:gradle:$androidPluginVersion"
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-  }
-}
-
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-
-repositories {
-  jcenter()
+plugins {
+  id("com.android.library")
+  id("kotlin-kapt")
+  id("org.jetbrains.kotlin.android")
 }
 
 android {
-  compileSdkVersion 25
-  buildToolsVersion "25.0.2"
-  dataBinding { enabled = true }
+  namespace = "skedgo.datetimerangepicker"
+  compileSdkVersion 35
 
   defaultConfig {
-    minSdkVersion 15
-    targetSdkVersion 25
+    minSdkVersion 21
+    targetSdkVersion 35
     versionCode 1
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+
+  buildFeatures {
+    viewBinding = true
+    dataBinding = true
   }
 
   buildTypes {
@@ -40,26 +27,20 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
-}
-
-kapt { generateStubs = true }
-
-dependencies {
-  testCompile 'junit:junit:4.12'
-  testCompile 'org.assertj:assertj-core:1.7.0'
-  testCompile 'org.mockito:mockito-core:1.10.19'
-  testCompile 'org.robolectric:robolectric:3.1.4'
-  testCompile 'com.nhaarman:mockito-kotlin:1.0.1'
-
-  androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2', {
-    exclude group: 'com.android.support', module: 'support-annotations'
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
   }
 
-  compile 'io.reactivex:rxjava:1.2.0'
-  compile 'net.danlew:android.joda:2.9.3.1'
-  compile 'com.squareup:android-times-square:1.6.5@aar'
-  compile "com.android.support:appcompat-v7:$supportLibraryVersion"
-  compile "com.android.support:design:$supportLibraryVersion"
-  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-  kapt "com.android.databinding:compiler:$androidPluginVersion"
+  kotlinOptions {
+    jvmTarget = "17"
+  }
+}
+
+dependencies {
+  implementation("io.reactivex:rxjava:1.2.0")
+  implementation("net.danlew:android.joda:2.9.3.1")
+  implementation("com.squareup:android-times-square:1.6.5@aar")
+  implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.9.23"))
+  implementation("com.google.android.material:material:1.12.0")
 }

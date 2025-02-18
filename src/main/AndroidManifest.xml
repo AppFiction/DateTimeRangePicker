@@ -1,1 +1,7 @@
-<manifest package="skedgo.datetimerangepicker" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="skedgo.datetimerangepicker">
+
+    <application>
+        <activity android:name=".DateTimeRangePickerActivity" />
+    </application>
+</manifest>

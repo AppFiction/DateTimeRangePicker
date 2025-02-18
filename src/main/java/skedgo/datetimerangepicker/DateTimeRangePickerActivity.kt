@@ -4,14 +4,15 @@ import android.app.Activity
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.text.format.DateFormat
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.squareup.timessquare.CalendarPickerView
 import org.joda.time.DateTime
 import skedgo.datetimerangepicker.databinding.DateTimeRangePickerBinding
-import java.util.*
+import java.util.Date
+import java.util.TimeZone
 
 class DateTimeRangePickerActivity : AppCompatActivity() {
   companion object {
@@ -41,7 +42,7 @@ class DateTimeRangePickerActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    viewModel.handleArgs(intent.extras)
+    viewModel.handleArgs(intent.extras!!)
     binding.setViewModel(viewModel)
 
     val toolbar = binding.toolbar

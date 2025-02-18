@@ -2,16 +2,17 @@ package skedgo.datetimerangepicker
 
 import android.app.TimePickerDialog
 import android.content.Intent
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
 import android.os.Bundle
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.DateTimeFormatter
 import rx.Observable
 import rx.subjects.BehaviorSubject
-import java.util.*
+import java.util.Date
+import java.util.TimeZone
 
 class DateTimeRangePickerViewModel(private val timeFormatter: TimeFormatter) {
   val startDateText = ObservableField<String>()
